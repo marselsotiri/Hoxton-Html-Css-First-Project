@@ -6,8 +6,9 @@
 }
 
 html {
-    font-size: 10px;
+    font-size: 8px;
     font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -84,10 +85,11 @@ p {
     height: auto;
 }
 #header .header {
-    min-height: 8vw;
-    background-color: rgba(31, 30, 30, 24);
+    min-height: 4vw;
+    background-color: rgba(31, 30, 30, 0.24);
+    transition: .3 ease background-color;
 }
-.header .nav-bar {
+#header .nav-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,6 +98,88 @@ p {
     max-width: 1300px;
     padding: 0 10px;
 }
+#header .nav-list ul{
+    list-style: none;
+    position: absolute;
+    background-color: rgb(31, 30, 30);
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow-x: hidden;
+}
+#header .nav-list ul a {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: .2rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 20px;
+    display: block;
+}
+#header .nav-list ul a::after {
+    content: attr(data-after);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: rgba(240, 248, 255, 0.021);
+    font-size: 12rem;
+    letter-spacing: 50px;
+    z-index: -1;
+    transition: .3 ease letter-spacing;
+}
+#header .nav-list ul li:hover a::after{
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+}
+#header .nav-list ul li:hover a {
+    color: lightskyblue;
+}
+#header .hamburger {
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    border: 3px solid white;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+}
+#header .hamburger  .bar {
+    height: 2px;
+    width: 30px;
+    position: relative;
+    background-color: white;
+    z-index: -1;
+}
+#header .hamburger .bar::after,
+#header .hamburger .bar::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-color: white;
+    transition: .3 ease;
+    transition-property: top, bottom;
+}
+#header .hamburger .bar::after {
+    top: 8px;
+}
+#header .hamburger .bar::before {
+    bottom: 8px;
+}
+
 /* End Header Section */
 
 /* Hero Section */
@@ -353,9 +437,11 @@ p {
     flex-direction: column;
     max-width: 1200px;
     max-width: 0 auto;
+    width: 90%;
 }
 #contact .contact-items{
-    width: 400px;
+    /* width: 400px; */
+    width: 100%;
 }
 #contact .contact-item{
     width: 80%;
@@ -539,10 +625,11 @@ p {
         width: 100%;
         display: flex;
         flex-direction: row;
-        padding: 20px;
+        justify-content: space-evenly;
         margin: 0;
     }
     #contact .contact-item {
+        width: 30%;
         margin: 20px;
         flex-direction: row;
     }
@@ -566,6 +653,25 @@ p {
 
 /* Media Query For Desktop */
 @media only screen and (min-width:1200px){
+    #header .hamburger {
+        display: none;
+    }
+    #header .nav-list ul {
+        position: initial;
+        display: block;
+        height: auto;
+        width: fit-content;
+        background-color: transparent;
+    }
+    #header .nav-list ul li{
+        display: inline-block;
+    }
+    #header .nav-list ul li a {
+        font-size: 1.8rem;
+    }
+    #header .nav-list ul a:after {
+        display: none;
+    }
     #services .service-bottom .service-item {
         flex-basis: 22%;
         margin: 1.5%;
