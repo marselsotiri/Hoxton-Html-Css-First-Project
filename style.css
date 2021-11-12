@@ -114,7 +114,7 @@ p {
     overflow-x: hidden;
     visibility: hidden;
 }
-#header .hamburger:focus ~ ul {
+#header .modal-checkbox:checked ~ .nav-list ul {
     visibility: visible;
   }
 #header .nav-list ul a {
